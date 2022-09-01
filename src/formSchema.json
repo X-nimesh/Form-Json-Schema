@@ -2,29 +2,38 @@
   {
     "type": "text",
     "content": {
+      "name": "Name",
       "label": "Name",
+      "required": true,
       "placeholder": "enter the name",
       "minlength": 5
     }
   },
   {
-    "type": "select",
+    "type": "tel",
     "content": {
-      "label": "City",
-      "options": ["Kathmandu", "Bhaktapur", "Patan"]
+      "name": "Phone",
+      "label": "Phone",
+      "required": true,
+      "placeholder": "enter the number"
     }
   },
   {
-    "type": "Checkbox",
+    "type": "number",
     "content": {
-      "label": "Hobbies",
-      "options": ["Football", "Basketball", "Cricket"]
+      "name": "Age",
+      "label": "Age",
+      "required": true,
+      "placeholder": "enter your age"
     }
   },
+
   {
     "type": "password",
     "content": {
+      "name": "Password",
       "label": "Password",
+      "placeholder": "pass",
       "pattern": ".{8,}"
     }
   }
