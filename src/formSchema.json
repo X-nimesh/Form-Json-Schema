@@ -1,0 +1,31 @@
+[
+  {
+    "type": "text",
+    "content": {
+      "label": "Name",
+      "placeholder": "enter the name",
+      "minlength": 5
+    }
+  },
+  {
+    "type": "select",
+    "content": {
+      "label": "City",
+      "options": ["Kathmandu", "Bhaktapur", "Patan"]
+    }
+  },
+  {
+    "type": "Checkbox",
+    "content": {
+      "label": "Hobbies",
+      "options": ["Football", "Basketball", "cricket"]
+    }
+  },
+  {
+    "type": "password",
+    "content": {
+      "label": "Password",
+      "pattern": ".{8,}"
+    }
+  }
+]

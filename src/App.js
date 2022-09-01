@@ -1,25 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
-
+import InputText from './Components/InputText';
+import formSchema from './formSchema.json';
+import InputPassword from './Components/InputPassword';
+import InputCheckbox from './Components/InputCheckbox';
+import InputSelect from './Components/InputSelect';
 function App() {
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Form from Json schema</h1>
+      <form>
+        {formSchema.map((item, index) => {
+          switch (item.type) {
+            case 'text':
+              return <InputText key={index} content={item.content} />
+            case 'Checkbox':
+              return <InputCheckbox key={index} content={item.content} />
+            case 'select':
+              return <InputSelect key={index} content={item.content} />
+            case 'password':
+              return <InputPassword key={index} content={item.content} />
+            default:
+              return null;
+          }
+
+        }
+        )}
+
+      </form>
     </div>
   );
-}
 
+}
 export default App;
