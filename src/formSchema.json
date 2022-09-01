@@ -18,7 +18,7 @@
     "type": "Checkbox",
     "content": {
       "label": "Hobbies",
-      "options": ["Football", "Basketball", "cricket"]
+      "options": ["Football", "Basketball", "Cricket"]
     }
   },
   {
