@@ -5,28 +5,49 @@ import { useState } from 'react';
 
 const Form = ({ setFormData, FormData }) => {
     let data = FormData;
+
     let name = '';
-    console.log(data);
+    const [Errors, setErrors] = useState({
+        Name: false,
+        Phone: false,
+        Age: false,
+        Password: false,
+    })
+
     let HandleChange = (e) => {
         name = e.target.name;
         data[name] = e.target.value;
         setFormData(data);
-        console.log(FormData);
+
+        let validation = formSchema.filter((item) => {
+            if (item.content.name === name) {
+                return item;
+            }
+        })
+        if (!FormData[name]?.match(validation[0].content.validate)) {
+            setErrors({ ...Errors, [name]: true })
+        }
+        else {
+            setErrors({ ...Errors, [name]: false })
+        }
     }
     let onSubmit = (e) => {
         e.preventDefault();
-        formSchema.map((item, index) => {
-            name = item.content.name;
-            console.log(name)
-            console.log(FormData[name])
-            console.log(item.content.validate)
-            if (!FormData[name]?.match(item.content.validate)) {
-                alert(item.content.errormsg)
+        let errors = false;
+        Object.values(Errors).forEach((item) => {
+            if (item) {
+                errors = true;
+                alert('Please fill the form correctly');
             }
         })
-        console.log(FormData.Name);
-        console.log('submit');
+        if (errors) {
+            return;
+        }
+        console.log(FormData);
+        console.log('submited');
     }
+
+
     return (
         <>
             <form>
@@ -37,6 +58,7 @@ const Form = ({ setFormData, FormData }) => {
                                 {item.content.label}:
                             </label>
                             <input type={item.type} placeholder={item.content.placeholder} name={item.content.name} defaultValue={FormData[item.content.label]} onChange={(e) => HandleChange(e)} />
+                            <p className='errors'>{Errors[item.content.name] ? item.content.errormsg : null}</p>
                         </div>
                     )
                 })}

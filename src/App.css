@@ -12,3 +12,8 @@ h1 {
 form input {
     margin-bottom: 10px;
 }
+
+.errors {
+    color: red;
+    margin: 0;
+}

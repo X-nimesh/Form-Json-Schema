@@ -7,7 +7,7 @@ function App() {
     "Name": "hello world",
     "Phone": "9869166973",
     "Password": "",
-    "Age": "23"
+    "Age": 23
   })
   console.log(FormData);
   return (
