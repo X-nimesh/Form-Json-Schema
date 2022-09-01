@@ -6,6 +6,8 @@
       "label": "Name",
       "required": true,
       "placeholder": "enter the name",
+      "errormsg": "Name should be only alphabets",
+      "validate": "^[a-zA-Z ]+$",
       "minlength": 5
     }
   },
@@ -14,14 +16,18 @@
     "content": {
       "name": "Phone",
       "label": "Phone",
+      "validate": "^[0-9]{10}$",
+      "errormsg": "Phone number should be 10 digits",
       "required": true,
       "placeholder": "enter the number"
     }
   },
   {
-    "type": "number",
+    "type": "text",
     "content": {
       "name": "Age",
+      "validate": "^[0-9]+$",
+      "errormsg": "Age should be number",
       "label": "Age",
       "required": true,
       "placeholder": "enter your age"
@@ -32,6 +38,8 @@
     "type": "password",
     "content": {
       "name": "Password",
+      "validate": "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$",
+      "errormsg": "Password should be minimum 8 characters, at least one uppercase letter, one lowercase letter and one number",
       "label": "Password",
       "placeholder": "pass",
       "pattern": ".{8,}"

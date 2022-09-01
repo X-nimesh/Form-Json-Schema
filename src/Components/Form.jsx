@@ -3,37 +3,42 @@ import formSchema from '../formSchema.json';
 
 import { useState } from 'react';
 
-const Form = () => {
-    let data = [];
+const Form = ({ setFormData, FormData }) => {
+    let data = FormData;
+    let name = '';
+    console.log(data);
     let HandleChange = (e) => {
-        console.log(e.target.name);
-        data[e.target.name] = e.target.value;
+        name = e.target.name;
+        data[name] = e.target.value;
+        setFormData(data);
+        console.log(FormData);
     }
     let onSubmit = (e) => {
         e.preventDefault();
-        if (!data['Name']?.match(/^[a-zA-Z]+$/)) {
-            alert('Name should be only alphabets')
-        }
-        if (!data['Password']?.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/)) {
-            alert('Password should be minimum 8 characters, at least one uppercase letter, one lowercase letter and one number')
-        }
-        if (!data['Phone']?.match(/^[0-9]{10}$/)) {
-            alert('Phone number should be 10 digits')
-        }
-        console.log(data);
+        formSchema.map((item, index) => {
+            name = item.content.name;
+            console.log(name)
+            console.log(FormData[name])
+            console.log(item.content.validate)
+            if (!FormData[name]?.match(item.content.validate)) {
+                alert(item.content.errormsg)
+            }
+        })
+        console.log(FormData.Name);
         console.log('submit');
     }
     return (
         <>
             <form>
                 {formSchema.map((item, index) => {
-                    console.log('rtender')
-                    return (<div>
-                        <label>
-                            {item.content.label}:
-                        </label>
-                        <input type={item.type} placeholder={item.content.placeholder} name={item.content.name} onChange={(e) => HandleChange(e)} />
-                    </div>)
+                    return (
+                        <div key={index}>
+                            <label>
+                                {item.content.label}:
+                            </label>
+                            <input type={item.type} placeholder={item.content.placeholder} name={item.content.name} defaultValue={FormData[item.content.label]} onChange={(e) => HandleChange(e)} />
+                        </div>
+                    )
                 })}
 
                 <button type="submit" onClick={(e) => onSubmit(e)}>Submit</button>
