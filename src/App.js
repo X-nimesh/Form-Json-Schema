@@ -9,7 +9,6 @@ function App() {
     "Password": "",
     "Age": 23
   })
-  console.log(FormData);
   return (
     <div className="App">
       <h1>Form from Json schema</h1>

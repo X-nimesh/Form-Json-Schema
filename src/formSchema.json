@@ -25,6 +25,17 @@
   {
     "type": "text",
     "content": {
+      "name": "Address",
+      "label": "Address",
+      "validate": "^[a-zA-Z0-9s,'-]*$",
+      "errormsg": "Address should only have alphabets and number",
+      "required": true,
+      "placeholder": "enter your address"
+    }
+  },
+  {
+    "type": "text",
+    "content": {
       "name": "Age",
       "validate": "^[0-9]+$",
       "errormsg": "Age should be number",

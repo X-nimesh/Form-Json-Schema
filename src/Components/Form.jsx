@@ -1,21 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import formSchema from '../formSchema.json';
 
 import { useState } from 'react';
 
 const Form = ({ setFormData, FormData }) => {
     let data = FormData;
+    let [Errors, setErrors] = useState({});
 
-    let name = '';
-    const [Errors, setErrors] = useState({
-        Name: false,
-        Phone: false,
-        Age: false,
-        Password: false,
-    })
+    useEffect(() => {
+        formSchema.map(field => {
+            Errors = { ...Errors, [field.content.name]: false }
+        })
+    }, [])
 
     let HandleChange = (e) => {
-        name = e.target.name;
+        const name = e.target.name;
         data[name] = e.target.value;
         setFormData(data);
 
