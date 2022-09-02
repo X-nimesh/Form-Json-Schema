@@ -4,7 +4,6 @@ import formSchema from '../formSchema.json';
 import { useState } from 'react';
 
 const Form = ({ setFormData, FormData }) => {
-    let data = FormData;
     const [Errors, setErrors] = useState({});
 
     useEffect(() => {
@@ -13,24 +12,26 @@ const Form = ({ setFormData, FormData }) => {
         })
     }, [])
 
-    let HandleChange = (e) => {
+    const HandleChange = (e) => {
         const name = e.target.name;
-        data[name] = e.target.value;
-        setFormData(data);
 
-        let validation = formSchema.filter((item) => {
+        const validation = formSchema.filter((item) => {
             if (item.content.name === name) {
                 return item;
             }
         })
+
         if (!FormData[name]?.match(validation[0].content.validate)) {
             setErrors({ ...Errors, [name]: true })
         }
         else {
             setErrors({ ...Errors, [name]: false })
+            return;
         }
+
+        FormData[name] = e.target.value;
     }
-    let onSubmit = (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
         let errors = false;
         Object.values(Errors).forEach((item) => {
