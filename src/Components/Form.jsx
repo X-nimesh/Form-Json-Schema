@@ -5,11 +5,11 @@ import { useState } from 'react';
 
 const Form = ({ setFormData, FormData }) => {
     let data = FormData;
-    let [Errors, setErrors] = useState({});
+    const [Errors, setErrors] = useState({});
 
     useEffect(() => {
         formSchema.map(field => {
-            Errors = { ...Errors, [field.content.name]: false }
+            setErrors({ ...Errors, [field.content.name]: false })
         })
     }, [])
 
