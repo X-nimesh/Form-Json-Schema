@@ -7,11 +7,12 @@ const Form = ({ setFormData, FormData }) => {
     const [Errors, setErrors] = useState({});
 
     useEffect(() => {
+        let errors = {};
         formSchema.map(field => {
-            setErrors({ ...Errors, [field.content.name]: false })
+            errors = { ...errors, [field.content.name]: false }
         })
+        setErrors(errors);
     }, [])
-
     const HandleChange = (e) => {
         const name = e.target.name;
 
@@ -20,16 +21,17 @@ const Form = ({ setFormData, FormData }) => {
                 return item;
             }
         })
-
-        if (!FormData[name]?.match(validation[0].content.validate)) {
+        if (!e.target.value?.match(validation[0].content.validate)) {
             setErrors({ ...Errors, [name]: true })
         }
         else {
             setErrors({ ...Errors, [name]: false })
             return;
         }
-
         FormData[name] = e.target.value;
+        setFormData({ ...FormData });
+
+
     }
     const onSubmit = (e) => {
         e.preventDefault();
