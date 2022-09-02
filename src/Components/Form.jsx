@@ -23,13 +23,13 @@ const Form = ({ setFormData, FormData }) => {
         })
         if (!e.target.value?.match(validation[0].content.validate)) {
             setErrors({ ...Errors, [name]: true })
+
         }
         else {
             setErrors({ ...Errors, [name]: false })
-            return;
+            setFormData({ ...FormData, [name]: e.target.value });
         }
-        FormData[name] = e.target.value;
-        setFormData({ ...FormData });
+
 
 
     }
