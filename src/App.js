@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './App.css';
-import Form from './Components/Form';
+import DynamicForm from './Components/DynamicForm';
 
 function App() {
   const [FormData, setFormData] = useState({
@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="App">
       <h1>Form from Json schema</h1>
-      <Form setFormData={setFormData} FormData={FormData} />
+      <DynamicForm setFormData={setFormData} FormData={FormData} />
     </div>
   );
 
