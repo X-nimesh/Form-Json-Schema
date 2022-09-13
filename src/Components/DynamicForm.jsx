@@ -5,16 +5,27 @@ import { useState } from 'react';
 
 const DynamicForm = ({ setFormData, FormData }) => {
 
-    let errorsTemp = {};
-    let validationTemp = {};
 
-    useMemo((errorsTemp, validationTemp) => {
-        formSchema.map(field => {
-            errorsTemp = { ...errorsTemp, [field.content.name]: false }
-            validationTemp = { ...validationTemp, [field.content.name]: field.content.validate }
-        })
+    // let errorsTemp = {};
+    // let validationTemp = {};
+    // useMemo((errorsTemp) => {
+    //     formSchema.map(field => {
+    //         errorsTemp = { ...errorsTemp, [field.content.name]: false }
+    //         validationTemp = { ...validationTemp, [field.content.name]: field.content.validate }
+    //     })
 
-    }, [formSchema])
+    // }, [formSchema])
+
+    const errorsTemp = formSchema.reduce((acc, field) => {
+        return { ...acc, [field.content.name]: false }
+    }, {})
+
+    const validationTemp = formSchema.reduce((acc, field) => {
+        return { ...acc, [field.content.name]: field.content.validate }
+    }, {})
+
+
+
 
     const [Errors, setErrors] = useState(errorsTemp);
     const [Validate, setvalidate] = useState(validationTemp);
@@ -64,7 +75,7 @@ const DynamicForm = ({ setFormData, FormData }) => {
                     )
                 })}
 
-                <button class="submit" type="submit" onClick={(e) => onSubmit(e)}>Submit</button>
+                <button className="submit" type="submit" onClick={(e) => onSubmit(e)}>Submit</button>
             </form>
         </>
     )
