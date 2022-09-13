@@ -16,20 +16,21 @@ const DynamicForm = ({ setFormData, FormData }) => {
 
     // }, [formSchema])
 
-    const errorsTemp = formSchema.reduce((acc, field) => {
-        return { ...acc, [field.content.name]: false }
-    }, {})
-
-    const validationTemp = formSchema.reduce((acc, field) => {
-        return { ...acc, [field.content.name]: field.content.validate }
-    }, {})
 
 
 
 
-    const [Errors, setErrors] = useState(errorsTemp);
-    const [Validate, setvalidate] = useState(validationTemp);
 
+    const [Errors, setErrors] = useState(
+        formSchema.reduce((acc, field) => {
+            return { ...acc, [field.content.name]: false }
+        }, {})
+    );
+    const [Validate, setvalidate] = useState(
+        formSchema.reduce((acc, field) => {
+            return { ...acc, [field.content.name]: field.content.validate }
+        }, {})
+    );
 
     const HandleChange = (e) => {
         const name = e.target.name;
