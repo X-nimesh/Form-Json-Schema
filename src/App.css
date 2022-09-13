@@ -1,12 +1,44 @@
 .App form {
-    width: 50vw;
+    width: 30vw;
     margin: auto;
     gap: 0px;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.137);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.submit {
+    width: 10vw;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(0, 17, 255);
+    color: white;
+    transition: all .2s;
+}
+
+input {
+    border: rgb(212, 212, 212) 1px solid;
+}
+
+
+
+.submit:hover {
+    box-shadow: 5px 4px 2px rgba(0, 0, 0, 0.329);
+}
+
+.submit:focus {
+    box-shadow: none;
 }
 
 h1 {
     margin: 20px;
     text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 form input {

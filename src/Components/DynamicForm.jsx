@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffec, useMemo } from 'react'
 import formSchema from '../formSchema.json';
 
 import { useState } from 'react';
@@ -8,15 +8,16 @@ const DynamicForm = ({ setFormData, FormData }) => {
     let errorsTemp = {};
     let validationTemp = {};
 
-    formSchema.map(field => {
-        errorsTemp = { ...errorsTemp, [field.content.name]: false }
-        validationTemp = { ...validationTemp, [field.content.name]: field.content.validate }
-    })
+    useMemo(() => {
+        formSchema.map(field => {
+            errorsTemp = { ...errorsTemp, [field.content.name]: false }
+            validationTemp = { ...validationTemp, [field.content.name]: field.content.validate }
+        })
 
+    }, [formSchema])
 
     const [Errors, setErrors] = useState(errorsTemp);
     const [Validate, setvalidate] = useState(validationTemp);
-
 
 
     const HandleChange = (e) => {
@@ -34,14 +35,13 @@ const DynamicForm = ({ setFormData, FormData }) => {
         e.preventDefault();
         let errors = false;
 
-        Object.values(Errors).forEach((item) => {
-            if (item) {
-                errors = true;
-                alert('Please fill the form correctly');
-            }
-        })
+        let errorCheck = (item) => {
+            return item === true;
+        }
 
-        if (errors) {
+        if (Object.values(Errors).some(errorCheck)) {
+            errors = true;
+            alert('Please fill the form correctly');
             return;
         }
 
@@ -64,7 +64,7 @@ const DynamicForm = ({ setFormData, FormData }) => {
                     )
                 })}
 
-                <button type="submit" onClick={(e) => onSubmit(e)}>Submit</button>
+                <button class="submit" type="submit" onClick={(e) => onSubmit(e)}>Submit</button>
             </form>
         </>
     )
