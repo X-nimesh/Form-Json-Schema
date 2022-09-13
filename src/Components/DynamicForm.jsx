@@ -8,7 +8,7 @@ const DynamicForm = ({ setFormData, FormData }) => {
     let errorsTemp = {};
     let validationTemp = {};
 
-    useMemo(() => {
+    useMemo((errorsTemp, validationTemp) => {
         formSchema.map(field => {
             errorsTemp = { ...errorsTemp, [field.content.name]: false }
             validationTemp = { ...validationTemp, [field.content.name]: field.content.validate }
